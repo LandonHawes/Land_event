@@ -67,7 +67,9 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
     };
+
     const newUser = await createUser(user);
+
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
@@ -75,7 +77,8 @@ export async function POST(req: Request) {
         },
       });
     }
-    return NextResponse.json({ message: "User created", user: newUser });
+
+    return NextResponse.json({ message: "OK", user: newUser });
   }
 
   if (eventType === "user.updated") {
